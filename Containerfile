@@ -1,0 +1,20 @@
+FROM ubuntu:24.04
+LABEL maintainer="Stefan Priebsch <stefan@priebsch.de>"
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install software-properties-common curl -y && \
+    add-apt-repository ppa:ondrej/php && \
+    apt update && \
+    apt install php8.4 php8.4-cli php8.4-intl php8.4-dom php8.4-mbstring php8.4-xml php8.4-xmlwriter php8.4-sqlite3 php8.4-curl -y && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    curl -L https://phar.io/releases/phive.phar -o /usr/local/bin/phive && \
+    chmod +x /usr/local/bin/phive && \
+    yes | phive install -g phpunit && \
+    yes | phive install -g phpab && \
+    yes | phive install -g phpstan && \
+    yes | phive install -g infection && \
+    yes | phive install -g php-cs-fixer && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
