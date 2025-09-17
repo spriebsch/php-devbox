@@ -18,13 +18,7 @@ RUN apt update && \
     yes | phive install -g phpbench && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
-RUN addgroup developer
-RUN adduser --ingroup developer --no-create-home developer
-
-USER developer
-
 COPY container/php.ini /etc/php/8.4/cli
-COPY scripts/enable-xdebug /usr/local/bin
 COPY scripts/update-autoloader /usr/local/bin
 
 WORKDIR /workspace
