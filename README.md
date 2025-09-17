@@ -8,12 +8,16 @@ It is designed for exercises  work with host directory mounting.
 - Composer installed globally and available system-wide
 - Host directory mounting support for live development
 
-## Usage
+## Installation
 
-### Building the container
 ```bash
 ./build.sh
+sudo ln -s  ~/Dokumente/projects/php-devbox/php-devbox /usr/local/bin
 ```
+
+## Usage
+
+Change to your project directory. 
 
 ### Running the container
 ```bash
@@ -27,6 +31,8 @@ To use on an example directory, navigate to that directory and run:
 ```bash
 /path/to/php-devbox/run.sh
 ```
+
+You are now on a shell inside the container.
 
 Inside the container, you can run PHP scripts like so:
 
