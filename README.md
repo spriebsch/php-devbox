@@ -1,44 +1,68 @@
-# php-devbox
+# About php-devbox
 
-PHP container for coding exercises. This container provides PHP 8.4 with common extensions, Composer and common development tools pre-installed.
-It is designed for exercises  work with host directory mounting.
+php-devbox is a containerized PHP 8.4 for coding exercises or local software development.
+It comes preconfigured with all the tools you'll need.
+It is designed to run PHP at the command line, without a web server.
+The project is maintained by Stefan Priebsch <stefan@priebsch.de>.
 
-## Features
-- PHP 8.4 with CLI, intl, dom, mbstring, xml, xmlwriter, and sqlite3 extensions
-- Composer installed globally and available system-wide
-- Host directory mounting support for live development
+php-devbox works particularly well for code examples on https://the-fluent-developer.com
+and for coding exercises in Stefan's trainings at https://thephpcc.academy.
 
 ## Installation
 
+You will need either Podman or Docker installed.
+
+@todo
+
+Run
+
 ```bash
-./build.sh
-sudo ln -s  ~/Dokumente/projects/php-devbox/php-devbox /usr/local/bin
+./build
 ```
+
+to build the container image. 
+It will automatically be added to your local image registry.
+
+Now run 
+
+```bash
+sudo ln -s  /path/to/php-devbox/php-devbox /usr/local/bin
+```
+
+so that you are able to run `php-devbox` from anywhere.
+
+That's it! You are done and can now enjoy running PHP 8.4 in a container.
 
 ## Usage
 
-Change to your project directory. 
+In the shell, change to your project directory (the directory that contains the PHP code you want to run).
+Usually, your project directory will have a `src/` folder containing the PHP code.
+Do not change into the `src/` folder, but into the project root directory.
 
-### Running the container
-```bash
-./run.sh
-```
-
-This will mount your current directory into `/workspace` in the container.
-
-To use on an example directory, navigate to that directory and run:
+Run the container with:
 
 ```bash
-/path/to/php-devbox/run.sh
+php-devbox
 ```
 
-You are now on a shell inside the container.
+This will start a container with the name `php-devbox`, 
+mount your current directory into `/workspace` in the container and start a shell inside the container.
 
-Inside the container, you can run PHP scripts like so:
+You can now run PHP scripts:
 
 ```bash
-php src/script.php
+php src/example.php
 ```
+You can do the usual things with PHP, for instance:
+
+```bash
+php -m
+```
+
+
+
+
+
 
 To run tests, you can use PHPUnit:
 
@@ -111,7 +135,4 @@ Should you need to upgrade the installed tools, you can run
 phive update
 ```
 
-php-devbox is maintained by Stefan Priebsch <stefan@priebsch.de>.
-
-It works particularly well on examples on https://the-fluent-developer.com
-and trainings at https://thephpcc.academy.
+To leave the container, use `exit`.

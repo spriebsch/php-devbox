@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+FILE="/etc/php/8.4/cli"
+
+if [ ! -e "$FILE" ]; then
+  echo "Error: $FILE not found" >&2
+  exit 1
+fi
+
+replace() {
+  sed -i.bak 's/xdebug\.mode=develop/xdebug.mode=off/g' "$FILE"
+  echo "Updated $FILE. Backup saved as ${FILE}.bak"
+}
+
+if [ -w "$FILE" ]; then
+  replace
+else
+  if command -v sudo >/dev/null 2>&1; then
+    sudo sed -i.bak 's/xdebug\.mode=develop/xdebug.mode=off/g' "$FILE"
+    echo "Updated $FILE with sudo. Backup saved as ${FILE}.bak"
+  else
+    echo "Error: $FILE is not writable. Re-run this script with sudo." >&2
+    exit 1
+  fi
+fi
