@@ -33,13 +33,13 @@ so that you are able to run `php-devbox` from anywhere.
 
 That's it! You are done and can now enjoy running PHP 8.4 in a container.
 
-## Usage
+## Running PHP scripts
 
 In the shell, change to your project directory (the directory that contains the PHP code you want to run).
 Usually, your project directory will have a `src/` folder containing the PHP code.
 Do not change into the `src/` folder, but into the project root directory.
 
-Run the container with:
+Run the container with
 
 ```bash
 php-devbox
@@ -48,30 +48,22 @@ php-devbox
 This will start a container with the name `php-devbox`, 
 mount your current directory into `/workspace` in the container and start a shell inside the container.
 
-You can now run PHP scripts:
+You can now run PHP scripts
 
 ```bash
 php src/example.php
 ```
-You can do the usual things with PHP, for instance:
 
-```bash
-php -m
-```
+## Running tools
 
 
-
-
-
-
-To run tests, you can use PHPUnit:
+To run PHPUnit, use
 
 ```bash
 phpunit
 ```
 
-### Using Composer
-Since Composer is installed globally in the container, you can use it directly:
+Composer is also available:
 
 ```bash
 composer install
@@ -79,60 +71,28 @@ composer require package/name
 composer update
 ```
 
+Further tools are PHPStan, Infection and PHP CS Fixer.
+You can run them in the same way:
+
+### PHPStan
+```bash
+phpstan
+infection
+php-cs-fixer
+```
+
+
 The key advantage is that your host project directory is mounted as a volume, allowing you to edit files on your host machine while having access to PHP and Composer inside the container.
 
 Inside the container, your working directory is `/workspace`.
 
-In addition, the following tools are installed: 
+remember that contents the working directory `/workspace` inside the container are in fact located 
+on your host machine. Any changes you make to the files in the container will be reflected on your host machine, even if you stop the container.
 
-### PHPUnit
+## Exiting the container
 
-You can run PHPUnit directly at the command line:
+To leave the container, use
+
 ```bash
-phpunit
+exit
 ```
-
-### PHPStan
-
-You can run PHPStan directly at the command line:
-```bash
-phpstan
-```
-
-### Infection
-
-You can run Infection directly at the command line:
-```bash
-infection
-```
-
-### PHP CS Fixer
-
-You can run PHP CS Fixer directly at the command line:
-```bash
-php-cs-fixer
-```
-
-### Phive
-
-Phive is a useful tool to install development tools.
-In fact, the above mentioned development tools (with exception of Composer)
-have been installed using Phive.
-
-You can run Phive directly at the command line:
-```bash
-phive
-```
-By default, Phive installs tools in the `tools/` directory.
-Inside the container, all tools are installed globally, which
-puts them into
-```bash
-/usr/local/bin
-```
-
-Should you need to upgrade the installed tools, you can run
-```bash
-phive update
-```
-
-To leave the container, use `exit`.
