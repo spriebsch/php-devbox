@@ -23,7 +23,3 @@ if [ ! -f "container/Containerfile" ]; then
 fi
 
 $COMMAND build -t "${FULL_IMAGE_NAME}" -f container/Containerfile .
-
-echo ""
-echo "Run the container with ./run.sh"
-echo ""
