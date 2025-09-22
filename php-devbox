@@ -9,4 +9,15 @@ else
     exit 1
 fi
 
-$COMMAND run -it --rm --hostname php-devbox -v $(pwd):/workspace php-devbox:latest bash
+if [ $# -gt 0 ]; then
+    CONTAINER_CMD=("$@")
+else
+    CONTAINER_CMD=("bash")
+fi
+
+"$COMMAND" run -it --rm \
+  --hostname php-devbox \
+  -v "$(pwd)":/workspace \
+  -w /workspace \
+  php-devbox:latest \
+  "${CONTAINER_CMD[@]}"

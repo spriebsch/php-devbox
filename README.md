@@ -54,6 +54,26 @@ You can now run PHP scripts
 php src/example.php
 ```
 
+### Run a single command without entering the shell
+
+You can execute any command directly inside the container by passing it to php-devbox. If no command is provided, an interactive shell is started.
+
+Examples:
+
+```bash
+# Show PHP version
+php-devbox php -v
+
+# Run a PHP script
+php-devbox php src/example.php
+
+# Run Composer in your current project
+php-devbox composer install
+
+# Run PHP inline
+php-devbox php -r 'echo "Hello from container!\n";'
+```
+
 ## Running tools
 
 
