@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -f "bin/install" ]; then
+  echo "Error: call this script from the php-devbox directory"
+  exit 1
+fi
+
+source=$(dirname "$(dirname "$(readlink -f "$0")")")
+target=$(pwd)
+
+if [ -f "/usr/local/bin/php-devbox" ]; then
+  sudo rm /usr/local/bin/php-devbox
+fi
+
+sudo ln -s $source/bin/php-devbox /usr/local/bin
