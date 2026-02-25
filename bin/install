@@ -7,11 +7,24 @@ if [ ! -f "bin/install" ]; then
   exit 1
 fi
 
+source bin/build
+
 source=$(dirname "$(dirname "$(readlink -f "$0")")")
 target=$(pwd)
 
+ls -l /usr/local/bin/
+echo first
+ls -l /usr/local/bin/php-devbox
+
+echo check
+
 if [ -f "/usr/local/bin/php-devbox" ]; then
+  echo FOUND
   sudo rm /usr/local/bin/php-devbox
+echo deleted
+ls -l /usr/local/bin/
 fi
+
+exit;
 
 sudo ln -s $source/bin/php-devbox /usr/local/bin

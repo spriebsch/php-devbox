@@ -15,17 +15,10 @@ Change to the php-devbox directory.
 Run
 
 ```bash
-./build
+./bin/install
 ```
 
-to build the container image. It will automatically be added to your local image registry.
-
-Now run 
-
-```bash
-sudo ln -s  /path/to/php-devbox/php-devbox /usr/local/bin
-```
-
+to build the container image and set a symlink
 so that you are able to run `php-devbox` from anywhere.
 
 That's it! You are done and can now enjoy running PHP 8.4 in a container.
@@ -34,7 +27,7 @@ That's it! You are done and can now enjoy running PHP 8.4 in a container.
 
 In the shell, change to your project directory (the directory that contains the PHP code you want to work on). Usually, your project directory will have a `src/` folder containing the PHP code. Do not change into the `src/` folder, but stay in the project's root directory.
 
-Run the container with
+So from your project directory, run the container with
 
 ```bash
 php-devbox
@@ -70,8 +63,6 @@ php-devbox php -r 'echo "Hello from container!\n";'
 
 ## Running tools
 
-To run PHPUnit, use
-
 ```bash
 # Run PHPUnit
 phpunit
@@ -90,6 +81,9 @@ infection
 # Run PHP-CS-Fixer
 php-cs-fixer
 
+# Rebuild the autoloaders in src/ and tests/
+update-autoloaders
+
 ```
 
 Remember that contents of the working directory `/workspace` inside the container are in fact located 
@@ -102,3 +96,12 @@ To leave the container, use
 ```bash
 exit
 ```
+
+# Frequently Asked Questions
+
+## Why is there no git installed in the container?
+
+Because your local git setup usually requires SSH keys, and your global git configuration itself. The container does not have access to these files, so git inside would not work properly.
+
+You should therefore only use the container to run the code and tools,
+and perform any git operations on the host itself.

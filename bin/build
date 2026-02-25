@@ -18,7 +18,7 @@ fi
 echo "Building container image: ${FULL_IMAGE_NAME}"
 
 if [ ! -f "container/Containerfile" ]; then
-    echo "Error: Containerfile not found in current directory"
+    echo "Error: Containerfile not found. Run bin/build from project directory."
     exit 1
 fi
 

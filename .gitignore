@@ -18,7 +18,7 @@ Thumbs.db
 node_modules/
 vendor/
 dist/
-build/
+bin/build/
 tmp/
 temp/
 
