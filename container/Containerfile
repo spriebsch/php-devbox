@@ -2,35 +2,35 @@ FROM ubuntu:26.04
 LABEL maintainer="Stefan Priebsch <stefan@priebsch.de>"
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      software-properties-common \
-      ca-certificates \
-      curl \
-      git \
- && add-apt-repository -y universe \
- && apt-get update \
- && apt-get install -y --no-install-recommends \
-      php \
-      php-cli \
-      php-intl \
-      php-mbstring \
-      php-xml \
-      php-sqlite3 \
-      php-curl \
-      php-zip \
-      php-mysql \
-      php-xdebug && \
-    curl -fsSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    curl -fsSL https://phar.io/releases/phive.phar -o /usr/local/bin/phive && \
-    chmod +x /usr/local/bin/phive && \
-    yes | phive install -g phpunit && \
-    yes | phive install -g phpab && \
-    yes | phive install -g phpstan && \
-    yes | phive install -g infection && \
-    yes | phive install -g php-cs-fixer && \
-    yes | phive install -g phpbench && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+   && apt-get install -y --no-install-recommends \
+        software-properties-common \
+        ca-certificates \
+        curl \
+        git \
+   && add-apt-repository -y universe \
+   && apt-get update \
+   && apt-get install -y --no-install-recommends \
+        php \
+        php-cli \
+        php-intl \
+        php-mbstring \
+        php-xml \
+        php-sqlite3 \
+        php-curl \
+        php-zip \
+        php-mysql \
+        php-xdebug \
+    && curl -fsSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && curl -fsSL https://phar.io/releases/phive.phar -o /usr/local/bin/phive \
+    && chmod +x /usr/local/bin/phive  \
+    && yes | phive install -g phpunit  \
+    && yes | phive install -g phpab  \
+    && yes | phive install -g phpstan  \
+    && yes | phive install -g infection  \
+    && yes | phive install -g php-cs-fixer \
+    && yes | phive install -g phpbench  \
+    && apt-get clean  \
+      rm -rf /var/lib/apt/lists/*
 
 COPY container/php.ini /etc/php/8.5/cli
 COPY scripts/update-autoloader /usr/local/bin
