@@ -30,7 +30,7 @@ RUN apt-get update \
     && yes | phive install -g php-cs-fixer \
     && yes | phive install -g phpbench  \
     && apt-get clean  \
-      rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 COPY container/php.ini /etc/php/8.5/cli
 COPY scripts/update-autoloader /usr/local/bin
