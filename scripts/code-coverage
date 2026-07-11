@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export XDEBUG_MODE=coverage
+phpunit --coverage-html build/code-coverage

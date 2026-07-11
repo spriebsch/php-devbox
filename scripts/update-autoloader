@@ -1,7 +1,0 @@
-#!/bin/bash
-
-phpab -o src/autoload.php src
-
-if [ -f "tests/autoload.php" ]; then
-    phpab -o tests/autoload.php tests
-fi

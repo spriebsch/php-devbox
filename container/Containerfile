@@ -33,6 +33,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY container/php.ini /etc/php/8.5/cli
-COPY scripts/update-autoloader /usr/local/bin
+COPY scripts/code-coverage /usr/local/bin
+COPY scripts/path-coverage /usr/local/bin
 
 WORKDIR /workspace

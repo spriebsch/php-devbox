@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ ! -f build/code-coverage/index.html ]; then
+    echo "Error: no code coverage report to display."
+    exit 1
+fi
+
+gio open build/code-coverage/index.html
